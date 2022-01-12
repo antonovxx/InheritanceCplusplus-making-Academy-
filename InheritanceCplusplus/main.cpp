@@ -31,7 +31,7 @@ class Human {
     unsigned int age;
 public:
     
-    // Get - , Set - methods
+    // Get - , Set - methods:
 
     const string& get_first_name()const
     {
@@ -59,6 +59,7 @@ public:
         this -> age = age;
     }
     // Constructors:
+    
     Human(HUMAN_TAKE_PARAMETERS)
     {
         set_first_name(first_name);
@@ -85,7 +86,7 @@ class Student: public Human {
     unsigned int attending;
 public:
     
-    // Get - , Set - methods
+    // Get - , Set - methods:
     
     const string& get_speciality() const
     {
@@ -120,6 +121,7 @@ public:
     {
         this -> attending = attending;
     }
+    // Constructors:
     
     Student(HUMAN_TAKE_PARAMETERS, STUDENT_TAKE_PARAMETERS) : Human (HUMAN_GIVE_PARAMETERS)
     {
@@ -174,6 +176,7 @@ public:
     {
         this -> salary = salary;
     }
+    // Constructors:
     
     Teacher (HUMAN_TAKE_PARAMETERS, TEACHER_TAKE_PARAMETERS) : Human (HUMAN_GIVE_PARAMETERS)
     {
@@ -186,6 +189,7 @@ public:
     {
         cout << "Teacher Destructor: \t" << this << endl;
     }
+    // Methods:
     
     void print() const
     {
@@ -230,6 +234,7 @@ public:
         this -> salary = salary;
     }
     // Constructors:
+    
     Employee (HUMAN_TAKE_PARAMETERS, EMPLOYEE_TAKE_PARAMETERS) : Human (HUMAN_GIVE_PARAMETERS)
     {
         set_position(position);
@@ -241,6 +246,7 @@ public:
     {
         cout << "Employee Destructor: \t" << this << endl;
     }
+    // Methods:
     
     void print() const
     {
