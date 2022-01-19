@@ -613,18 +613,36 @@ int main(int argc, const char * argv[])
 #ifdef RECORD_TO_FILE
     
     Student** faculty = nullptr;
+    Teacher** department = nullptr;
+    Employee** staff = nullptr;
+    
     int n = 0;
     std::ifstream fin("/Users/antonkurin/Documents/Cplusplus/InheritanceCplusplus/file.txt");
     
     if(fin.is_open())
     {
         string student_type;
+        string teacher_type;
+        string staff_type;
+        
         for(; !fin.eof(); n++)
         {
             getline(fin, student_type);
+            getline(fin, teacher_type);
+            getline(fin, staff_type);
+        }
+        for(; !fin.eof(); n++)
+        {
+            getline(fin, teacher_type);
+        }
+        for(; !fin.eof(); n++)
+        {
+            getline(fin, staff_type);
         }
         
         faculty = new Student*[n] {};
+        department = new Teacher*[n] {};
+        staff = new Employee*[n] {};
         
         fin.clear();
         fin.seekg(0);
@@ -635,6 +653,20 @@ int main(int argc, const char * argv[])
             faculty[i] = studentFaculty(student_type);
             fin >> *faculty[i];
         }
+        
+        for(int i = 0; i < n; ++i)
+        {
+            getline(fin, teacher_type, ':');
+            department[i] = teacherDepartment(teacher_type);
+            fin >> *department[i];
+        }
+        for(int i = 0; i < n; ++i)
+        {
+            getline(fin, staff_type, ':');
+            staff[i] = staffDepartment(staff_type);
+            fin >> *staff[i];
+        }
+        
     }
     else
     {
@@ -645,17 +677,38 @@ int main(int argc, const char * argv[])
     {
         cout << *faculty[i] << endl;
     }
+    for(int i = 0; i < n; ++i)
+    {
+        cout << *department[i] << endl;
+    }
+    for(int i = 0; i < n; ++i)
+    {
+        cout << *staff[i] << endl;
+    }
+    
+    // CLEAR MEMORY
     
     for (int i = 0; i < n; ++i)
     {
         delete faculty[i];
     }
+    for (int i = 0; i < n; ++i)
+    {
+        delete department[i];
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        delete staff[i];
+    }
     
     delete [] faculty;
+    delete [] department;
+    delete [] staff;
+    
     fin.close();
     
  
-#endif // RECOD_TO_FILE
+#endif // RECORD_TO_FILE
     
     return 0;
     
